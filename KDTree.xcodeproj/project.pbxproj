@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0433D1341E4E2132004EB158 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0433D1331E4E2132004EB158 /* View.swift */; };
 		04BE27AB1E4D86ED001BC3FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE27AA1E4D86ED001BC3FE /* AppDelegate.swift */; };
 		04BE27AD1E4D86ED001BC3FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE27AC1E4D86ED001BC3FE /* ViewController.swift */; };
 		04BE27B01E4D86ED001BC3FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BE27AE1E4D86ED001BC3FE /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0433D1331E4E2132004EB158 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		04BE27A71E4D86ED001BC3FE /* KDTree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KDTree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BE27AA1E4D86ED001BC3FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04BE27AC1E4D86ED001BC3FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				04BE27B11E4D86ED001BC3FE /* Assets.xcassets */,
 				04BE27B31E4D86ED001BC3FE /* LaunchScreen.storyboard */,
 				04BE27B61E4D86ED001BC3FE /* Info.plist */,
+				0433D1331E4E2132004EB158 /* View.swift */,
 			);
 			path = KDTree;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				TargetAttributes = {
 					04BE27A61E4D86ED001BC3FE = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 47QD8JE4PA;
 						ProvisioningStyle = Automatic;
 					};
 					04BE27BA1E4D86ED001BC3FE = {
@@ -261,6 +265,7 @@
 			files = (
 				04BE27AD1E4D86ED001BC3FE /* ViewController.swift in Sources */,
 				04BE27AB1E4D86ED001BC3FE /* AppDelegate.swift in Sources */,
+				0433D1341E4E2132004EB158 /* View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 47QD8JE4PA;
 				INFOPLIST_FILE = KDTree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CPP1.KDTree;
@@ -424,6 +430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 47QD8JE4PA;
 				INFOPLIST_FILE = KDTree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CPP1.KDTree;
@@ -505,6 +512,7 @@
 				04BE27D11E4D86ED001BC3FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04BE27D21E4D86ED001BC3FE /* Build configuration list for PBXNativeTarget "KDTreeTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +521,7 @@
 				04BE27D41E4D86ED001BC3FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04BE27D51E4D86ED001BC3FE /* Build configuration list for PBXNativeTarget "KDTreeUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +530,7 @@
 				04BE27D71E4D86ED001BC3FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
