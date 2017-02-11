@@ -29,37 +29,54 @@
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dul-hn-SEi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GxL-74-pOh">
-                                <rect key="frame" x="280" y="629" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="asd:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ce4-Qw-8xD"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Utk-uA-4KA">
-                                <rect key="frame" x="16" y="596" width="134" height="21"/>
+                                <rect key="frame" x="16" y="610" width="134" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GxL-74-pOh">
+                                <rect key="frame" x="248" y="629" width="95" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Build KD-Tree"/>
+                                <connections>
+                                    <action selector="buildKdTree:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JvJ-ru-RAB"/>
+                                </connections>
+                            </button>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="7cD-8V-C45">
-                                <rect key="frame" x="156" y="591" width="118" height="31"/>
+                                <rect key="frame" x="156" y="605" width="118" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="pointNumChanged:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="zmz-PQ-Rbl"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="kNN : k = 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlR-fB-FnW">
+                                <rect key="frame" x="16" y="577" width="134" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="UeV-a4-t8D">
+                                <rect key="frame" x="120" y="573" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="kChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="6mH-zs-IMw"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="knnlabel" destination="jlR-fB-FnW" id="IVb-os-1qh"/>
                         <outlet property="pointNumSlider" destination="7cD-8V-C45" id="xLo-xE-vyc"/>
+                        <outlet property="stepper" destination="UeV-a4-t8D" id="1Wm-2C-OvZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="36" y="37.331334332833585"/>
         </scene>
     </scenes>
 </document>

@@ -10,8 +10,10 @@ import Foundation
 
 class Point {
     var p = [Float](repeating: 0, count: 2)
-    init(x: Float, y: Float) {
+    var index: Int
+    init(x: Float, y: Float, idx: Int) {
         self.p[0] = x
         self.p[1] = y
+        index = idx
     }
 }
