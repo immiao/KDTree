@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: Any) {
         myview.generateRandomPoints(Int(pointNumSlider.value));
-        myview.setNeedsDisplay()
     }
 
     

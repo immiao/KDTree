@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct node {
     var p: Point
@@ -26,15 +27,16 @@ func getMaxElements(pointSize: Int) -> Int {
 class KDTree {
     var nodeArray: [node?]
     var pointArray: [Point]
+    var pathArray = [UIBezierPath]()
+    var pathColorArray = [Int]()
     
-    init (pointArr: [Point]) {
-        pointArray = pointArr
-        nodeArray = [node?](repeating: nil, count: getMaxElements(pointSize: pointArray.count))
-        print(pointArray.count, getMaxElements(pointSize: pointArray.count))
+    init (pointArray: [Point]) {
+        self.pointArray = pointArray
+        self.nodeArray = [node?](repeating: nil, count: getMaxElements(pointSize: pointArray.count))
+        //print(pointArray.count, getMaxElements(pointSize: pointArray.count))
     }
     
-    func build(left: Int, right: Int, axis: Int, crtIdx: Int) {
-        var axis = axis
+    func build(left: Int, right: Int, axis: Int, crtIdx: Int, _ min: [Float], _ max: [Float]) {
         if left > right {
             return
         }
@@ -46,11 +48,24 @@ class KDTree {
 //        print("----")
         let mid: Int = (left + right) / 2
         nodeArray[crtIdx] = node(p: pointArray[mid], axis: axis)
+        let path = UIBezierPath()
+        if axis == 0 {
+            path.move(to: CGPoint(x: CGFloat(pointArray[mid].p[0]), y: CGFloat(min[1])))
+            path.addLine(to: CGPoint(x: CGFloat(pointArray[mid].p[0]), y: CGFloat(max[1])))
+        } else {
+            path.move(to: CGPoint(x: CGFloat(min[0]), y: CGFloat(pointArray[mid].p[1])))
+            path.addLine(to: CGPoint(x: CGFloat(max[0]), y: CGFloat(pointArray[mid].p[1])))
+        }
+        path.close()
+        pathArray.append(path)
+        pathColorArray.append(axis)
         
-        axis = (axis + 1) % 2
-        build(left: left, right: mid - 1, axis: axis, crtIdx: crtIdx * 2 + 1)
-        build(left: mid + 1, right: right, axis: axis, crtIdx: crtIdx * 2 + 2)
+        var newMin = min
+        var newMax = max
+        newMin[axis] = pointArray[mid].p[axis]
+        newMax[axis] = pointArray[mid].p[axis]
+        
+        build(left: left, right: mid - 1, axis: axis ^ 1, crtIdx: crtIdx * 2 + 1, min, newMax)
+        build(left: mid + 1, right: right, axis: axis ^ 1, crtIdx: crtIdx * 2 + 2, newMin, max)
     }
-    
-
 }

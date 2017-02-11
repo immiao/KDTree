@@ -12,7 +12,7 @@ import UIKit
 class View: UIView {
     
     var pointArray = [Point]()
-    var pathArray = [UIBezierPath]()
+    var pointPathArray = [UIBezierPath]()
     var kdtree: KDTree? = nil
     let w = Float(UIScreen.main.bounds.size.width)
     let h = Float(UIScreen.main.bounds.size.height - 100)
@@ -37,23 +37,28 @@ class View: UIView {
     
     func generateRandomPoints(_ num: Int) {
         // clear previous paths
-        pathArray.removeAll()
         pointArray.removeAll()
+        pointPathArray.removeAll()
+
         for i in 0..<num {
             let point = Point(x: random(max: w), y: random(max: h), idx: i)
             pointArray.append(point)
-            pathArray.append(UIBezierPath(ovalIn: CGRect.init(x: CGFloat(point.p[0]), y: CGFloat(point.p[1]), width: 8, height: 8)))
+            pointPathArray.append(UIBezierPath(ovalIn: CGRect.init(x: CGFloat(point.p[0]), y: CGFloat(point.p[1]), width: 8, height: 8)))
         }
+        setNeedsDisplay()
     }
     
     func buildKdTree() {
         if pointArray.count != 0 {
-            kdtree = KDTree(pointArr: pointArray)
-            kdtree?.build(left: 0, right: pointArray.count - 1, axis: 0, crtIdx: 0)
+            kdtree = KDTree(pointArray: pointArray)
+            let min = [Float(0.0), Float(0.0)]
+            let max = [w, h]
+            kdtree?.build(left: 0, right: pointArray.count - 1, axis: 0, crtIdx: 0, min, max)
         }
         else {
             print("No Points Exist!")
         }
+        setNeedsDisplay()
     }
     
     override func draw(_ rect: CGRect) {
@@ -65,8 +70,21 @@ class View: UIView {
 //        UIColor.red.set()
 //        aPath.stroke()
 //        aPath.fill()
-        for p in pathArray {
+        UIColor.black.set()
+        for p in pointPathArray {
             p.stroke()
+        }
+        if kdtree != nil {
+            print((kdtree?.pathArray.count)!)
+            for i in (0...((kdtree?.pathArray.count)! - 1)) {
+                if kdtree?.pathColorArray[i] == 0 {
+                    UIColor.red.set()
+                }
+                else {
+                    UIColor.blue.set()
+                }
+                kdtree?.pathArray[i].stroke()
+            }
         }
     }
 }
