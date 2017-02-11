@@ -33,6 +33,7 @@ class KDTree {
     init (pointArray: [Point]) {
         self.pointArray = pointArray
         self.nodeArray = [node?](repeating: nil, count: getMaxElements(pointSize: pointArray.count))
+        //self.pointArray[0] = Point(x: 100, y: 100, idx: -1)
         //print(pointArray.count, getMaxElements(pointSize: pointArray.count))
     }
     
@@ -63,5 +64,9 @@ class KDTree {
         
         build(left: left, right: mid - 1, axis: axis ^ 1, crtIdx: crtIdx * 2 + 1, min, newMax)
         build(left: mid + 1, right: right, axis: axis ^ 1, crtIdx: crtIdx * 2 + 2, newMin, max)
+    }
+    
+    func search(nodeIdx: Int, p: Point) {
+        
     }
 }

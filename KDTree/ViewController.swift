@@ -32,8 +32,9 @@ class ViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         let location = touch?.location(in: self.view)
+        myview.drawTappedPoint(x: Float(location?.x ?? -1), y: Float(location?.y ?? -1))
         print("TOUCHED")
-        print(location?.x, location?.y)
+        //print(location?.x, location?.y)
     }
     @IBAction func pointNumChanged(_ sender: Any) {
         //print(pointNumSlider.value);

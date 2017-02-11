@@ -12,6 +12,8 @@ import UIKit
 class View: UIView {
     
     var pointArray = [Point]()
+    var inputPoint: Point? = nil
+    var inputPointPath: UIBezierPath? = nil
     var pointPathArray = [UIBezierPath]()
     var kdtree: KDTree? = nil
     let w = Float(UIScreen.main.bounds.size.width)
@@ -53,6 +55,7 @@ class View: UIView {
     func buildKdTree() {
         if pointArray.count != 0 {
             kdtree = KDTree(pointArray: pointArray)
+            //print(pointArray[0].p[0], pointArray[0].p[1])
             let min = [Float(0.0), Float(0.0)]
             let max = [w, h]
             kdtree?.build(left: 0, right: pointArray.count - 1, axis: 0, crtIdx: 0, min, max)
@@ -63,11 +66,27 @@ class View: UIView {
         setNeedsDisplay()
     }
     
+    func drawTappedPoint(x: Float, y: Float) {
+        if x >= 0 && x <= w && y >= 0 && y <= h {
+            inputPoint = Point(x: x, y: y, idx: -1)
+            inputPointPath = UIBezierPath(arcCenter: CGPoint(x: CGFloat(x), y: CGFloat(y)), radius: CGFloat(6), startAngle: CGFloat(0), endAngle: CGFloat(M_PI * 2), clockwise: true)
+            setNeedsDisplay()
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
+        
+        // draw input point
+        UIColor.red.set()
+        inputPointPath?.stroke()
+        
+        // draw nodes
         UIColor.black.set()
         for p in pointPathArray {
             p.stroke()
         }
+        
+        // draw split axes
         if kdtree?.pathArray.count ?? -1 > 0 {
             print((kdtree?.pathArray.count)!)
             for i in (0...((kdtree?.pathArray.count)! - 1)) {
