@@ -43,7 +43,8 @@ class View: UIView {
         for i in 0..<num {
             let point = Point(x: random(max: w), y: random(max: h), idx: i)
             pointArray.append(point)
-            pointPathArray.append(UIBezierPath(ovalIn: CGRect.init(x: CGFloat(point.p[0]), y: CGFloat(point.p[1]), width: 8, height: 8)))
+//            pointPathArray.append(UIBezierPath(ovalIn: CGRect.init(x: CGFloat(point.p[0]), y: CGFloat(point.p[1]), width: 8, height: 8)))
+            pointPathArray.append(UIBezierPath(arcCenter: CGPoint(x: CGFloat(point.p[0]), y: CGFloat(point.p[1])), radius: CGFloat(4), startAngle: CGFloat(0), endAngle: CGFloat(M_PI * 2), clockwise: true))
         }
         setNeedsDisplay()
     }
@@ -62,14 +63,6 @@ class View: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        
-//        aPath.move(to: CGPoint(x:20, y:50))
-//        aPath.addLine(to: CGPoint(x:300, y:50))
-//        
-//        aPath.close()
-//        UIColor.red.set()
-//        aPath.stroke()
-//        aPath.fill()
         UIColor.black.set()
         for p in pointPathArray {
             p.stroke()
