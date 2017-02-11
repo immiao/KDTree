@@ -28,7 +28,13 @@ class ViewController: UIViewController {
     @IBAction func kChanged(_ sender: Any) {
         knnlabel.text = "kNN : k = " + String(Int(stepper.value))
     }
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        let location = touch?.location(in: self.view)
+        print("TOUCHED")
+        print(location?.x, location?.y)
+    }
     @IBAction func pointNumChanged(_ sender: Any) {
         //print(pointNumSlider.value);
     }

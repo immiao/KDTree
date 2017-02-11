@@ -39,7 +39,8 @@ class View: UIView {
         // clear previous paths
         pointArray.removeAll()
         pointPathArray.removeAll()
-
+        kdtree?.pathArray.removeAll()
+        kdtree?.pathColorArray.removeAll()
         for i in 0..<num {
             let point = Point(x: random(max: w), y: random(max: h), idx: i)
             pointArray.append(point)
@@ -67,7 +68,7 @@ class View: UIView {
         for p in pointPathArray {
             p.stroke()
         }
-        if kdtree != nil {
+        if kdtree?.pathArray.count ?? -1 > 0 {
             print((kdtree?.pathArray.count)!)
             for i in (0...((kdtree?.pathArray.count)! - 1)) {
                 if kdtree?.pathColorArray[i] == 0 {

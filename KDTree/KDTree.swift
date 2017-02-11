@@ -42,10 +42,6 @@ class KDTree {
         }
         
         pointArray[left..<right + 1].sort{ $0.p[axis] < $1.p[axis] }
-//        for p in pointArray {
-//            print(p.p[0], p.p[1])
-//        }
-//        print("----")
         let mid: Int = (left + right) / 2
         nodeArray[crtIdx] = node(p: pointArray[mid], axis: axis)
         let path = UIBezierPath()
