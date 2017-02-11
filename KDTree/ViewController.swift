@@ -11,13 +11,19 @@ import Foundation
 
 class ViewController: UIViewController {
     let myview = View(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 100))
-    
+
     func hello(test name: String) {
         print(name);
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-        hello(test: "Hello World");
+        myview.generateRandomPoints(Int(pointNumSlider.value));
+        myview.setNeedsDisplay()
+    }
+
+    @IBOutlet weak var pointNumSlider: UISlider!
+    @IBAction func pointNumChanged(_ sender: Any) {
+        print(pointNumSlider.value);
     }
     
     @IBAction func asd(_ sender: Any) {
@@ -27,14 +33,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        view.addSubview(myview)
         
-        myview.setNeedsDisplay()
+        view.addSubview(myview)
         print("Hello World")
     }
 
-
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
