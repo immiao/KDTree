@@ -1,6 +1,7 @@
 # KDTree
-iOS Swift3 KD-Tree
+
+iOS Swift3 kNN KD-Tree
 
 ## Screenshots
 
-![](./img/kdtree0.jpg)
+![](./img/kdtree0.gif)
