@@ -42,7 +42,12 @@ class View: UIView {
         // clear previous paths
         pointArray.removeAll()
         pointPathArray.removeAll()
+        knnPathArray.removeAll()
+        
+        inputPoint = nil
         kdtree = nil
+        inputPointPath = nil
+        
 //        kdtree?.pathArray.removeAll()
 //        kdtree?.pathColorArray.removeAll()
         for i in 0..<num {
@@ -76,9 +81,15 @@ class View: UIView {
             
             knnPathArray.removeAll()
             if kdtree?.kPointArray.count ?? -1 > 0 {
-                for point in (kdtree?.kPointArray)! {
+                let pArr = (kdtree?.kPointArray)!
+                let count = (kdtree?.kPointArray.count)!
+                let inputPoint = self.inputPoint!
+                
+                for point in pArr {
                     knnPathArray.append(UIBezierPath(arcCenter: CGPoint(x: CGFloat(point.p[0]), y: CGFloat(point.p[1])), radius: CGFloat(4), startAngle: CGFloat(0), endAngle: CGFloat(M_PI * 2), clockwise: true))
                 }
+                let radius = sqrtf(pow(pArr[count - 1].p[0] - inputPoint.p[0], 2) + pow(pArr[count - 1].p[1] - inputPoint.p[1], 2))
+                knnPathArray.append(UIBezierPath(arcCenter: CGPoint(x: CGFloat(inputPoint.p[0]), y: CGFloat(inputPoint.p[1])), radius: CGFloat(radius), startAngle: CGFloat(0), endAngle: CGFloat(M_PI * 2), clockwise: true))
             }
             //print(kdtree?.kPointArray.count)
             setNeedsDisplay()
