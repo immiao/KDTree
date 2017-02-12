@@ -15,6 +15,7 @@ class View: UIView {
     var inputPoint: Point? = nil
     var inputPointPath: UIBezierPath? = nil
     var pointPathArray = [UIBezierPath]()
+    var knnPathArray = [UIBezierPath]()
     var kdtree: KDTree? = nil
     let w = Float(UIScreen.main.bounds.size.width)
     let h = Float(UIScreen.main.bounds.size.height - 100)
@@ -41,8 +42,9 @@ class View: UIView {
         // clear previous paths
         pointArray.removeAll()
         pointPathArray.removeAll()
-        kdtree?.pathArray.removeAll()
-        kdtree?.pathColorArray.removeAll()
+        kdtree = nil
+//        kdtree?.pathArray.removeAll()
+//        kdtree?.pathColorArray.removeAll()
         for i in 0..<num {
             let point = Point(x: random(max: w), y: random(max: h), idx: i)
             pointArray.append(point)
@@ -66,10 +68,19 @@ class View: UIView {
         setNeedsDisplay()
     }
     
-    func drawTappedPoint(x: Float, y: Float) {
-        if x >= 0 && x <= w && y >= 0 && y <= h {
+    func drawTappedPoint(x: Float, y: Float, k: Int) {
+        if x >= 0 && x <= w && y >= 0 && y <= h && (kdtree != nil) {
             inputPoint = Point(x: x, y: y, idx: -1)
             inputPointPath = UIBezierPath(arcCenter: CGPoint(x: CGFloat(x), y: CGFloat(y)), radius: CGFloat(6), startAngle: CGFloat(0), endAngle: CGFloat(M_PI * 2), clockwise: true)
+            kdtree?.search(inputPoint: inputPoint!, k: k)
+            
+            knnPathArray.removeAll()
+            if kdtree?.kPointArray.count ?? -1 > 0 {
+                for point in (kdtree?.kPointArray)! {
+                    knnPathArray.append(UIBezierPath(arcCenter: CGPoint(x: CGFloat(point.p[0]), y: CGFloat(point.p[1])), radius: CGFloat(4), startAngle: CGFloat(0), endAngle: CGFloat(M_PI * 2), clockwise: true))
+                }
+            }
+            //print(kdtree?.kPointArray.count)
             setNeedsDisplay()
         }
     }
@@ -86,9 +97,17 @@ class View: UIView {
             p.stroke()
         }
         
+        // draw knn
+        if knnPathArray.count > 0 {
+            UIColor.green.set()
+            for p in knnPathArray {
+                p.stroke()
+            }
+        }
+        
         // draw split axes
         if kdtree?.pathArray.count ?? -1 > 0 {
-            print((kdtree?.pathArray.count)!)
+            //print((kdtree?.pathArray.count)!)
             for i in (0...((kdtree?.pathArray.count)! - 1)) {
                 if kdtree?.pathColorArray[i] == 0 {
                     UIColor.red.set()
