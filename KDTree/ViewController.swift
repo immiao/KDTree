@@ -37,9 +37,6 @@ class ViewController: UIViewController {
         inputPointx = Float(location?.x ?? -1)
         inputPointy = Float(location?.y ?? -1)
         myview.drawTappedPoint(x: inputPointx!, y: inputPointy!, k: Int(stepper.value))
-        
-        //print("TOUCHED")
-        //print(location?.x, location?.y)
     }
     @IBAction func pointNumChanged(_ sender: Any) {
         
@@ -54,7 +51,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         view.addSubview(myview)
-        print("Hello World")
     }
 
     override func didReceiveMemoryWarning() {

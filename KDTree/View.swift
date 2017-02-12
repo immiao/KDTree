@@ -11,15 +11,16 @@ import UIKit
 
 class View: UIView {
     
-    var pointArray = [Point]()
-    var inputPoint: Point? = nil
-    var inputPointPath: UIBezierPath? = nil
+    var pointArray = [Point]() // nil or not ? removeAll() and = nil, which is faster?
     var pointPathArray = [UIBezierPath]()
     var knnPathArray = [UIBezierPath]()
+    
+    var inputPoint: Point? = nil
+    var inputPointPath: UIBezierPath? = nil
     var kdtree: KDTree? = nil
+    
     let w = Float(UIScreen.main.bounds.size.width)
     let h = Float(UIScreen.main.bounds.size.height - 100)
-    let path = UIBezierPath()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
